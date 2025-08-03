@@ -3,6 +3,8 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import { resolve } from 'node:path';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -75,4 +77,11 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3000);
+
+
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
